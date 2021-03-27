@@ -1,0 +1,111 @@
+
+<html>
+<head>
+<title>
+    currency converter
+</title>
+<style>
+  input[type="button"] {
+            border-radius: 3px;
+            background-color:rgb(231, 126, 126);
+            color: black;
+            width: 5%;
+            height: 5%;
+            border: none;
+        }
+        input[type="number"] {
+            text-align: right;
+            background-color: rgb(173, 165, 201);
+            width: 15%;
+            border: 1px solid black;
+            height: 4.8%;
+        }
+
+</style>
+<script>
+    function Calculate(){
+      y=document.getElementById("converter").value;
+      y1=document.getElementById("converter1").value;
+      x = document.getElementById("value1").value;
+      if(x == ""){
+                document.getElementById("value2").value = "";
+            }else{
+              switch(y1){
+                  case "INR":
+                    x1 = x ;
+                    break;
+                
+                  case "USD":
+                    x1= x * 72.81;
+                    break;
+                
+                  case "EUR":
+                    x1 = x * 88.03;
+                    break;
+                
+                  case "AUD":
+                    x1 = x * 56.97;
+                    break;
+                
+                  case "Yen":
+                    x1 = x * 0.68;
+                    break;
+             }
+             switch(y){
+                  case "INR":
+                    document.getElementById("value2").value = x1 * 1;
+                    break;
+                
+                  case "USD":
+                    document.getElementById("value2").value = x1 * 0.014;
+                    break;
+                
+                  case "EUR":
+                    document.getElementById("value2").value = x1 * 0.011;
+                    break;
+                
+                  case "AUD":
+                    document.getElementById("value2").value = x1 * 0.018;
+                    break;
+                
+                  case "Yen":
+                    document.getElementById("value2").value = x1 * 1.47;
+                    break;
+             }
+
+      }
+
+    }
+</script>
+</head>
+<body>
+<form action="/action_page.php">
+  <label for="from">Choose currency:</label>
+  <select onchange=" Calculate()" class="form-control" id="converter1">
+    <option value="INR">INR</option>
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="AUD">AUD</option>
+    <option value="Yen">Yen</option>
+  </select>
+  <br><br>
+</form>
+<form action="/action_page.php">
+    <label for="to">Choose currency:</label>
+    <select onchange="Calculate()" class="form-control" id="converter">
+        <option value="INR">INR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="AUD">AUD</option>
+        <option value="Yen">Yen</option>
+    </select>
+    <br><br>
+  </form>
+<input type="number" placeholder="Type Amount" oninput="Calculate()" class="form-control" id="value1"/>
+<input type="button" value="Convert" onclick="Calculate()" /> 
+<div class="form-group">
+    <label>Converted Amount</label>
+    <input type="number" class="form-control" id="value2" disabled="disabled"/>
+</div>
+</body>
+</html>
