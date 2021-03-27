@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+            <meta charset="utf-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <style>
+                html {
+                    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto,sans-serif;
+                    text-align: center;
+                    }
+
+                body {
+                    margin: 0 auto;
+                    }
+            </style>
+            <title>Weather App</title>
+  </head>
+
+  <body>
+    <h1 id="temperature"></h1>
+    <h2 id="description"></h2>
+    <p id="location"></p>
+    <label for="myCheck">Convert to Fahrenheit or Celsius</label> 
+<input type="checkbox" id="myCheck" onclick="getWeather();" >
+    <h1 id="temperature1"></h1>
+  </body>
+
+  <script >
+      function getWeather() {
+    let temperature = document.getElementById("temperature");
+    let description = document.getElementById("description");
+    let location = document.getElementById("location");
+  
+    let api = "https://api.openweathermap.org/data/2.5/weather";
+    let apiKey = "f146799a557e8ab658304c1b30cc3cfd";
+      latitude = 16.311583799999998;
+      longitude = 80.4200874;
+  
+      let url =api +"?lat=" +latitude +"&lon=" +longitude +"&appid=" +apiKey +"&units=imperial";
+  
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          let temp = data.main.temp;
+          location.innerHTML =data.name 
+          description.innerHTML = data.weather[0].main;
+            var checkBox = document.getElementById("myCheck");
+            var text = document.getElementById("text");
+            if (checkBox.checked == true){
+                temperature1.innerHTML = data.main.temp+"° F";
+            } else {
+                temperature1.innerHTML = data.main.temp*5/9+"° C";
+            }
+        });
+  }
+  getWeather();
+  </script>
+</html>
